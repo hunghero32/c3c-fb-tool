@@ -1,7 +1,7 @@
 {
-  "name": "FBState Chức Năng",
+  "name": "TBTOOL Chức Năng",
   "version": "1.0",
-  "description": "Nhập/Xuất fbstate.json sử dụng để login.",
+  "description": "Nhập/Xuất fbtool.json sử dụng để login.",
   "permissions": [
     "cookies",
     "activeTab",

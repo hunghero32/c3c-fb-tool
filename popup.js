@@ -102,9 +102,9 @@ window.onload = function () {
                                 }
                             });
                         });
-                        toastNotification("Fbstate imported successfully!");
+                        toastNotification("fbtool imported successfully!");
                     } else {
-                        toastNotification("Invalid JSON file (not a FBState JSON file).");
+                        toastNotification("Invalid JSON file (not a fbtool JSON file).");
                     }
                 } catch (_) {
                     toastNotification("Failed to load JSON file (malformed?)");
@@ -126,41 +126,41 @@ window.onload = function () {
                 creation: new Date().toISOString(),
                 lastAccessed: new Date().toISOString()
             }));
-            var fbstate = JSON.stringify(cok, null, 4);
+            var fbtool = JSON.stringify(cok, null, 4);
 
             if (encrypted === "base64") {
-                fbstate = utf8_to_b64(fbstate);
+                fbtool = utf8_to_b64(fbtool);
             } else if (encrypted) {
                 // Asking for key
                 let pwdKey = prompt("Please enter key to encrypt:");
                 let keyHash = [...sha256(pwdKey || "").match(/.{2}/g)].map(e => parseInt(e, 16));
 
-                let bytes = aesjs.utils.utf8.toBytes(fbstate);
+                let bytes = aesjs.utils.utf8.toBytes(fbtool);
                 let aesCtr = new aesjs.ModeOfOperation.ctr(keyHash);
                 let encryptedData = aesCtr.encrypt(bytes);
-                fbstate = aesjs.utils.hex.fromBytes(encryptedData);
+                fbtool = aesjs.utils.hex.fromBytes(encryptedData);
             }
-            const yourFbstate = document.getElementById("yourFbstate");
+            const yourfbtool = document.getElementById("yourfbtool");
             const btnCopy = document.getElementById("btnCopy");
             const btnDownload = document.getElementById("btnDownload");
-            yourFbstate.value = fbstate;
+            yourfbtool.value = fbtool;
 
             btnCopy.onclick = function () {
-                yourFbstate.select();
+                yourfbtool.select();
                 document.execCommand("copy");
                 toastNotification('Success! Đã lưu vào bộ nhớ tạm');
             };
 
             btnDownload.onclick = function () {
-                var blob = stringToBlob(fbstate, "application/json");
+                var blob = stringToBlob(fbtool, "application/json");
                 var url = window.webkitURL || window.URL || window.mozURL || window.msURL;
                 var a = document.createElement('a');
-                a.download = 'fbstate.json';
+                a.download = 'fbtool.json';
                 a.href = url.createObjectURL(blob);
                 a.textContent = '';
                 a.dataset.downloadurl = ['json', a.download, a.href].join(':');
                 a.click();
-                toastNotification('Success! The fbstate đã được tải ' + a.download);
+                toastNotification('Success! The fbtool đã được tải ' + a.download);
                 a.remove();
             };
         });
