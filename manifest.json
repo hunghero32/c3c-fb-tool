@@ -1,19 +1,19 @@
 {
-  "name": "TBTOOL Chức Năng",
+  "name": "TDZ Facebook Tool",
   "version": "1.0",
   "description": "Nhập/Xuất fbtool.json sử dụng để login.",
+  "manifest_version": 3,
   "permissions": [
     "cookies",
-    "activeTab",
+    "activeTab"
+  ],
+  "host_permissions": [
     "https://*.facebook.com/"
   ],
   "background": {
-    "scripts": [
-      "background.js"
-    ],
-    "persistent": false
+    "service_worker": "background.js"
   },
-  "browser_action": {
+  "action": {
     "default_popup": "popup.html",
     "default_icon": {
       "16": "logo/16.png",
@@ -29,6 +29,5 @@
     "48": "logo/48.png",
     "64": "logo/64.png",
     "128": "logo/128.png"
-  },
-  "manifest_version": 2
+  }
 }
