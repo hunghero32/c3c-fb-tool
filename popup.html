@@ -30,6 +30,15 @@
       margin: 5px 0 5px 0;
     }
 
+    .five_button {
+      width: auto;
+      margin: 20px;
+      padding: 16px 10px;
+      background: #f5f5f5;
+      border-radius: 18px;
+      box-shadow: 0 2px 8px #0001;
+    }
+
     .five_button .btn_imp,
     .five_button .btn_exp,
     .five_button .btn_logout {
@@ -207,6 +216,26 @@
       }
     }
 
+    .btn_group {
+      min-width: 90px;
+      max-width: 120px;
+      flex: 1 1 0;
+      margin-bottom: 0 !important;
+      box-shadow: 0 1px 4px #0002;
+      font-size: 13px !important;
+      font-weight: 500 !important;
+      letter-spacing: 0.5px;
+    }
+
+    .btn_group:hover {
+      opacity: 0.85 !important;
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 4px 12px #0002;
+    }
+
+    .five_button {
+      box-sizing: border-box;
+    }
   </style>
 </head>
 
@@ -217,20 +246,21 @@
     <a href="https://github.com/hunghero32/c3c-fb-tool" target="_blank" class="author">TDZ Group</a>
   </div>
 
-  <div class="five_button" style="width: auto; height: auto; margin-left: 20px; margin-right: 20px">
-
-    <input id="import" type="file" style="display: none; margin-top: 50px " />
-    <label for="import" class="btn_imp">Nhập Vào FBTOOL</label>
-    <input id="importenc" type="file" style="display: none;" />
-    <label for="importenc" class="btn_imp">Nhập Vào FBTOOL (encrypted)</label>
-    <input id="importbase64" type="file" style="display: none;" />
-    <label for="importbase64" class="btn_imp" style="margin-bottom: 15px;">Nhập Vào FBTOOL (base64)</label>
-
-    <input id="export" class="btn_exp" type="button" value="Xuất Ra FBTOOL" />
-    <input id="exportenc" class="btn_exp" type="button" value="Xuất Ra FBTOOL (encrypted)" />
-    <input id="exportbase64" class="btn_exp" type="button" value="Xuất Ra FBTOOL (base64)" />
-
-    <input id="logout" class="btn_logout" type="button" value="Đăng Xuất (không chết FBTOOL)" style="margin-top: 5px" />
+  <div class="five_button">
+    <div style="display: flex; justify-content: center; gap: 12px; margin-bottom: 14px;">
+      <input id="import" type="file" style="display: none;" />
+      <label for="import" class="btn_imp btn_group">Nhập</label>
+      <input id="importenc" type="file" style="display: none;" />
+      <label for="importenc" class="btn_imp btn_group">Encrypted</label>
+      <input id="importbase64" type="file" style="display: none;" />
+      <label for="importbase64" class="btn_imp btn_group">Base64</label>
+    </div>
+    <div style="display: flex; justify-content: center; gap: 12px; margin-bottom: 10px;">
+      <input id="export" class="btn_exp btn_group" type="button" value="Xuất" />
+      <input id="exportenc" class="btn_exp btn_group" type="button" value="Encrypted" />
+      <input id="exportbase64" class="btn_exp btn_group" type="button" value="Base64" />
+    </div>
+    <input id="logout" class="btn_logout" type="button" value="Đăng Xuất (không chết FBTOOL)" style="margin-top: 5px; width: 100%;" />
   </div>
 
   <div class="text-boxes">

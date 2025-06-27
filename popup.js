@@ -1,4 +1,4 @@
-// Copyright 2022 BadAimWeeb. All rights reserved. MIT license.
+// Copyright 2023 TDZ Group. All rights reserved. MIT license.
 
 var stringToBlob = function (str, mimetype) {
     var raw = str;
@@ -39,7 +39,7 @@ window.onload = function () {
     function importFunc(e, encrypted) {
         if (e.currentTarget.files[0]) {
             if (e.currentTarget.files[0].type != "application/json") {
-                toastNotification("Invalid file given");
+                toastNotification("Tệp không hợp lệ, vui lòng chọn tệp JSON");
             }
             var fr = new FileReader();
             fr.readAsText(e.currentTarget.files[0], "UTF-8");
@@ -52,7 +52,7 @@ window.onload = function () {
                     }
                     else if (encrypted) {
                         // Asking for key
-                        const pwdKey = prompt("Please enter key to encrypt:");
+                        const pwdKey = prompt("Vui lòng nhập khóa để giải mã:");
                         const keyHash = [...sha256(pwdKey || "").match(/.{2}/g)].map(e => parseInt(e, 16));
 
                         const bytes = aesjs.utils.hex.toBytes(data);
@@ -102,12 +102,12 @@ window.onload = function () {
                                 }
                             });
                         });
-                        toastNotification("fbtool imported successfully!");
+                        toastNotification("Nhập fbtool thành công!");
                     } else {
-                        toastNotification("Invalid JSON file (not a fbtool JSON file).");
+                        toastNotification("Tệp JSON không hợp lệ (không phải fbtool JSON)");
                     }
                 } catch (_) {
-                    toastNotification("Failed to load JSON file (malformed?)");
+                    toastNotification("Không thể tải tệp JSON (có thể tệp bị lỗi hoặc sai định dạng)");
                 }
             }
         }
@@ -132,7 +132,7 @@ window.onload = function () {
                 fbtool = utf8_to_b64(fbtool);
             } else if (encrypted) {
                 // Asking for key
-                let pwdKey = prompt("Please enter key to encrypt:");
+                let pwdKey = prompt("Vui lòng nhập khóa để mã hóa:");
                 let keyHash = [...sha256(pwdKey || "").match(/.{2}/g)].map(e => parseInt(e, 16));
 
                 let bytes = aesjs.utils.utf8.toBytes(fbtool);
@@ -148,7 +148,7 @@ window.onload = function () {
             btnCopy.onclick = function () {
                 yourfbtool.select();
                 document.execCommand("copy");
-                toastNotification('Success! Đã lưu vào bộ nhớ tạm');
+                toastNotification('Thành công! Đã sao chép vào bộ nhớ tạm');
             };
 
             btnDownload.onclick = function () {
@@ -160,19 +160,19 @@ window.onload = function () {
                 a.textContent = '';
                 a.dataset.downloadurl = ['json', a.download, a.href].join(':');
                 a.click();
-                toastNotification('Success! The fbtool đã được tải ' + a.download);
+                toastNotification('Thành công! fbtool đã được tải về: ' + a.download);
                 a.remove();
             };
         });
     }
 
     function logout() {
-        const result = confirm("Are you sure you want to logout?");
+        const result = confirm("Bạn có chắc chắn muốn đăng xuất không?");
         if (result) {
             chrome.cookies.getAll({
                 domain: "facebook.com"
             }, function (cookies) {
-                // * it helps you not to lose the list of recently logged in accounts
+                // * giúp bạn không bị mất danh sách tài khoản đã đăng nhập gần đây
                 cookies = cookies.filter(c => c.name != "sb" && c.name != "dbln");
 
                 for (let i in cookies) {
